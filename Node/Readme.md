@@ -13,17 +13,17 @@
 #### 로그인(Login/Sign in)
 기본 로그인 방식(Cookie, Seesion)부터 최신(?) JWT 등으로 로그인을 하고 조금 더 쉽게 작성할 수 있도록 패키지 사용까지 작성해 보았습니다.
 
-#### [기본 로그인]
+##### [기본 로그인]
   1. cookie
   2. session
       - 쿠키와 달리 웹서버에 데이터들이 객체 형식으로 저장된다.
   3. JWT
 
-#### [기본 로그인 + DB 연동]
+##### [기본 로그인 + DB 연동]
   1. mysql
   2. MongoDB
     
-#### [로그인 with 패키지]
+##### [로그인 with 패키지]
   1. [passport](https://www.npmjs.com/package/passport)
       - 구글, 네이버, 카카오, 페이스북의 API 를 사용하여 로그인할 수 있다.
  
