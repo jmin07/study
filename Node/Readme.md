@@ -6,9 +6,16 @@
 
 ## Folder Structure
 
+[function](https://stackoverflow.com/questions/43951067/what-is-the-meaning-of-the-module-exports-functionapp)
+This line means this file has been exported as a function,
+you can access it by require('the-path-to-file.js')
+```javascript
+module.exports = function()
+```
+
 404 Error
-: In Express, 404 responses are not the result of an error, so the error-handler middleware will not capture them
-: 404는 에러의 결과가 아닌 등록 되지 않은 경로로 요청이 들어왔을 때 처리이다. 
+: In Express, 404 responses are not the result of an error, so the error-handler middleware will not capture them  
+: 404는 에러의 결과가 아닌 등록 되지 않은 경로로 요청이 들어왔을 때 처리이다.  
 
 ```javascript
 app.use(function(req, res, next){
@@ -17,8 +24,8 @@ app.use(function(req, res, next){
 ```
 
 500 Error
-: 서버에서 처리하지 못하는 에러가 발생하는 경우로, 
-: 오류 처리 미들웨어는 app.use() 및 라우트 호출을 정의한 후 마지막으로 정의해야한다.
+: 서버에서 처리하지 못하는 에러가 발생하는 경우로,  
+: 오류 처리 미들웨어는 app.use() 및 라우트 호출을 정의한 후 마지막으로 정의해야한다.  
 
 ```javascript
 app.use(function(err, req, res, next){
