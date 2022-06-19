@@ -57,13 +57,12 @@ router.post('/login', (req, res, next)=>{
         // 만약 유저 정보가 없는 경우   
         if(!user){
             return (
-                alert(`${info.message}`),
                 res.redirect('/auth')
             )
         }
 
         return (
-            req.login(user, (loginError)=>{ // login: 로그인 세션을 생성하는데 사용한다?
+            req.login(user, (loginError)=>{
                 if(loginError){
                     console.error(loginError);
                 }

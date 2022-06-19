@@ -7,7 +7,6 @@ module.exports = (USERS) => {
       });
       
     passport.deserializeUser((email, done)=>{   // 인증 후, 페이지 접근시 마다 사용자 정보를 Session 에서 읽어온다.
-        console.log("deserializeUser : ", email);
         for (let i = 0; i < USERS.length; i++) {
             const user = USERS[i];
             if (user.email === email) {
