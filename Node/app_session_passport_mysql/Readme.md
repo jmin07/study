@@ -5,6 +5,8 @@
 mysql Session 테이블에 저장되는 session 은 기간이 만료되면 알아서 삭제가 된다.  
 
 ```
+Routes
+    authRoute -> authProvider -> authController -> auth
 ```
 
 
@@ -16,6 +18,14 @@ local 의 MYSQL 을 사용해서 진행하도록 한다.
 ```
 Table
     user
+        id
+        email
+        password
+        name
+        status - 'Active'
+        createdAt
+        updatedAt
+        deletedAt
     sessions
 
 ```

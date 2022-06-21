@@ -16,7 +16,7 @@ module.exports.selectUserId = async (connection, userInfo)=>{
     const selectUserIdQuery = `
         SELECT email
         FROM users
-        WHERE email = ? AND password = ?;
+        WHERE email = ?;
     `;
 
     const [userId] = await connection.query(selectUserIdQuery, userInfo);
@@ -49,4 +49,18 @@ module.exports.postUser = async (connection, userInfo)=>{
     });
 
     return insertUser;
+};
+
+
+// 유저 아이디 조회
+module.exports.LocalStrategyUser = async (connection, userInfo)=>{
+    const selectUserIdQuery = `
+        SELECT email, password
+        FROM users
+        WHERE email = ?;
+    `;
+
+    const [userId] = await connection.query(selectUserIdQuery, userInfo);
+    
+    return userId;
 };

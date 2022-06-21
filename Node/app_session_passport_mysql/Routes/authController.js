@@ -1,4 +1,5 @@
 const authService = require('./authService')
+const passport = require('passport');
 
 /**
  * API No.1
@@ -6,6 +7,7 @@ const authService = require('./authService')
  * [GET] /auth
  */
  module.exports.getAuth = async (req, res)=>{
+    console.log("getAuth :", req.session.passport);
     let output;
     if(req.session.passport){
         output =
@@ -79,7 +81,6 @@ module.exports.getAuthRegister = async (req, res)=>{
     res.send(output);
 }
 
-
 /**
  * API No.4
  * API Name: 유저 생성(회원가입)
@@ -98,7 +99,48 @@ module.exports.postAuthRegister = async (req, res)=>{
  * API Name: 유저 로그인
  * [POST] /auth/login
  */
-module.exports.postAuthLogin = async (req, res)=>{
-    
-    return res.send(createResult);
+
+// 로그인 정보가 DB와 같은 것인지 비교한다?
+module.exports.postAuthLogin = async (req, res, next)=>{
+    passport.authenticate('local', (err, user, info)=>{  // LocalStrategy 실행  및 done 에서 넘겨주는 정보를 가지고 있다.
+        console.log("info :", info);
+        console.log("user :", user);
+
+        // done의 결과를 return 해줘야한다.
+        if(err){
+            console.error(authError);
+            return next(authError);
+        }
+
+        // 만약 유저 정보가 없는 경우   
+        if(!user){
+            return (
+                res.redirect('/auth/login')
+            )
+        }
+
+        return (
+            req.login(user, (loginError)=>{
+                if(loginError){
+                    console.error(loginError);
+                }
+                return res.redirect('/auth')
+            })
+        )
+    })(req, res, next)  // 미들웨어 내에서 미들웨어
+}
+
+/**
+ * API No.5
+ * API Name: 유저 로그아웃
+ * [GET] /auth/logout
+ */
+
+module.exports.getAuthLogout = (req, res) => {
+    req.session.destroy((err)=>{
+        if(err) {
+            return console.log(err);
+        }
+        return res.redirect('/auth');
+    })
 }

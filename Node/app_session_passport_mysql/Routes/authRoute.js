@@ -16,11 +16,15 @@ router.get('/login', auth.getAuthLogin);
 // 회원가입 화면
 router.get('/register', auth.getAuthRegister);
 
+// 유저 로그아웃
+router.get('/logout', auth.getAuthLogout);
+
 // 유저 회원가입
 router.post('/register', auth.postAuthRegister);
 
 // 유저 로그인
-router.post('/login', auth.getAuthLogin);
+router.post('/login', auth.postAuthLogin);
+
 
 // // 로그인
 // router.post('/login', (req, res, next)=>{
