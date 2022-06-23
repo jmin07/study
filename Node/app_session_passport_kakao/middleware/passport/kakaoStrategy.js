@@ -11,17 +11,17 @@ module.exports = () => {
  * accessToken, refreshToken: 로그인 성공 후 카카오가 보내준 토큰
  * profile: 카카오가 보내준 유저 정보. profile의 정보를 바탕으로 회원가입
  */
-    passport.use(new KakaoStrategy(
+    passport.use(
+        new KakaoStrategy(
         {
             clientID: process.env.KAKAO_ID,
             callbackURL: '/auth/kakao/callback',
         },
         async (accessToken, refreshToken, profile, done)=>{
-            console.log("kakao profile: ", profile);
             try{
-
+                console.log("kakao profile: ", profile);
             } catch (err) {
-                
+
             }
         }
     ))

@@ -9,7 +9,7 @@ const passport = require('passport');
  module.exports.getAuth = async (req, res)=>{
     console.log("getAuth :", req.session.passport);
     let output;
-    if(req.session.passport){
+    if(req.session.passport || res.){
         output =
         `
             <h1>안녕하세요, ${req.session.passport.user}</h1>
@@ -154,7 +154,9 @@ module.exports.getAuthLogout = (req, res) => {
  * [GET] /auth/kakao/callback
  */
 
-module.exports.kakaoLogin = async (req, res)=>{
-    passport.authenticate('kakao',{failureRedirect: '/auth'}),
-    res.redirect('/auth');
+module.exports.kakaoLogin = async (req, res, next)=>{
+    console.log("01?")
+    passport.authenticate('kakao',{failureRedirect: '/auth/register'})(req, res, next);
+    console.log("02?")
+    return res.redirect('/auth');
 };

@@ -33,6 +33,7 @@ router.get('/kakao/callback', auth.kakaoLogin);
 
 
 
+
 // // 로그인
 // router.post('/login', (req, res, next)=>{
 //     passport.authenticate('local', (err, user, info)=>{  // LocalStrategy 실행  및 done 에서 넘겨주는 정보를 가지고 있다.

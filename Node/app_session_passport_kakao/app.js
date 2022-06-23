@@ -1,5 +1,5 @@
 const app = require('./middleware/express');
 
-app.listen(3000, ()=>{
-    console.log('3000 port!!')
+app.listen(8080, ()=>{
+    console.log('8080 port!!')
 })
