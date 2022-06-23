@@ -48,6 +48,7 @@ const passport = require('passport');
             <p>
                 <input type = 'submit'>
             </p>
+            <a href="/auth/kakao">카카오톡 로그인</a>
         </form>
     `;
     res.send(output);
@@ -132,7 +133,7 @@ module.exports.postAuthLogin = async (req, res, next)=>{
 }
 
 /**
- * API No.5
+ * API No.6
  * API Name: 유저 로그아웃
  * [GET] /auth/logout
  */
@@ -145,3 +146,15 @@ module.exports.getAuthLogout = (req, res) => {
         return res.redirect('/auth');
     })
 }
+
+
+/**
+ * API No.7
+ * API Name: 카카오톡 로그인
+ * [GET] /auth/kakao/callback
+ */
+
+module.exports.kakaoLogin = async (req, res)=>{
+    passport.authenticate('kakao',{failureRedirect: '/auth'}),
+    res.redirect('/auth');
+};

@@ -1,29 +1,40 @@
+// EXPRESS
 const express = require('express');
 const app = express();
 
-const session = require('express-session');
-const FileStore = require('session-file-store')(session);
+// ENV
+const dotenv = require('dotenv');
+dotenv.config({ path: './.env'});
 
+// SESSION
+const session = require('express-session');
+
+// DATABASE
+const pool = require('../Database/database');    
+const MySQLStore = require('express-mysql-session')(session);
+const sessionStore = new MySQLStore({}, pool)
+
+// PASSPORT
 const passport = require('passport');
 const passportConfig = require('./passport/index')  // 폴더내의 index 파일을 기본적으로(default)로 불러온다.
 
-const USERS = require('../DB/users');
-const authRouter = require('../Routes/auth');
+// ROUTER
+const authRouter = require('../Routes/authRoute');
 
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(session({
-    secret: 'test',
-    name: 'test',
+    secret: process.env.SESSION_SECRET,
+    name: process.env.SESSION_NAME,
     resave: false,
     saveUninitialized: true,
-    store: new FileStore(),
+    store: sessionStore,
 }));
 
 // session 보다 뒤에 작성해야한다!
 app.use(passport.initialize()); 
 app.use(passport.session());
-passportConfig(USERS);  // DB 를 매개변수로 넣어줘야한다.
+passportConfig(); 
 
 app.use('/auth', authRouter)
 

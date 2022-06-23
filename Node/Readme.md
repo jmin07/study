@@ -3,7 +3,7 @@
 > 프론트  
   : SSR(Server Side Rendering) 방식으로 Pug를 사용해서 프론트를 구성했습니다.
 
-## Folder Structure
+## 📂 Folder Structure
 
 #### 회원가입(Sign up)
 사이트를 사용하기 위해 회원가입하는 유저의 정보를 저장하는 방법에 대해 작성했습니다.  
@@ -35,7 +35,7 @@
 ### Log 처리
 **작성 예정**
 
-## 참고사항
+## 📂 참고사항
 [function](https://stackoverflow.com/questions/43951067/what-is-the-meaning-of-the-module-exports-functionapp)  
 : This line means this file has been exported as a **function**,  
 : you can access it by require('test.js')  
